@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카운트다운</title>
+</head>
+<body>
+    <div id="countdown"></div>
+
+    <script>
+        // 매주 수요일 13:30까지의 카운트다운을 표시하는 함수
+        function updateCountdown() {
+            // 현재 날짜와 시간 가져오기
+            const currentDate = new Date();
+            let currentDay = currentDate.getDay(); // 현재 요일(0부터 6까지, 0은 일요일)
+            let currentHour = currentDate.getHours();
+            let currentMinute = currentDate.getMinutes();
+            let currentSecond = currentDate.getSeconds();
+
+            // 매주 수요일 13:30의 요일과 시간 가져오기
+            const targetDay = 3; // 수요일은 JavaScript에서 0부터 시작하여 3입니다.
+            const targetHour = 13;
+            const targetMinute = 30;
+
+            // 현재 요일이 수요일보다 이전이면 다음 주로 설정
+            if (currentDay < targetDay || (currentDay === targetDay && currentHour < targetHour) || (currentDay === targetDay && currentHour === targetHour && currentMinute < targetMinute)) {
+                currentDay += 7;
+            }
+
+            // 목표 요일과의 요일 차이 계산
+            let daysUntilWednesday = targetDay - currentDay;
+            if (daysUntilWednesday <= 0) {
+                daysUntilWednesday += 7;
+            }
+
+            // 남은 시간 계산
+            let hoursUntilTarget = targetHour - currentHour;
+            let minutesUntilTarget = targetMinute - currentMinute;
+            let secondsUntilTarget = 0 - currentSecond;
+
+            // 음수값 보정
+            if (secondsUntilTarget < 0) {
+                secondsUntilTarget += 60;
+                minutesUntilTarget--;
+            }
+            if (minutesUntilTarget < 0) {
+                minutesUntilTarget += 60;
+                hoursUntilTarget--;
+            }
+            if (hoursUntilTarget < 0) {
+                hoursUntilTarget += 24;
+                daysUntilWednesday--;
+            }
+
+            // 카운트다운 표시
+            const countdownDisplay = document.getElementById('countdown');
+            countdownDisplay.textContent = `다음 수요일 13:30까지: ${daysUntilWednesday}일 ${hoursUntilTarget}시간 ${minutesUntilTarget}분 ${secondsUntilTarget}초`;
+
+            // 1초마다 함수 재호출
+            setTimeout(updateCountdown, 1000);
+        }
+
+        // 페이지 로드시 카운트다운 업데이트 시작
+        window.onload = function() {
+            updateCountdown();
+        };
+    </script>
+</body>
+</html>
