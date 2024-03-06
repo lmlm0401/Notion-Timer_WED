@@ -52,19 +52,27 @@
                 hoursUntilTarget += 24;
                 daysUntilWednesday--;
             }
-
             // 카운트다운 표시
-            const countdownDisplay = document.getElementById('countdown');
-            countdownDisplay.textContent = `다음 마감: ${daysUntilWednesday}일 ${hoursUntilTarget}시간 ${minutesUntilTarget}분 ${secondsUntilTarget}초`;
 
+            const countdownDisplay = document.getElementById('countdown');
+            countdownDisplay.textContent = `${daysUntilWednesday}일 ${hoursUntilTarget}시간 ${minutesUntilTarget}분 ${secondsUntilTarget}초`;
             // 1초마다 함수 재호출
             setTimeout(updateCountdown, 1000);
+
+            countdownDisplay.style.fontSize = '24px';
+            countdownDisplay.style.color = '#333';
+            countdownDisplay.style.fontFamily = 'Arial, sans-serif';
+            countdownDisplay.style.padding = "10px 10px 30px 30px";
+
         }
 
         // 페이지 로드시 카운트다운 업데이트 시작
         window.onload = function() {
             updateCountdown();
         };
+
     </script>
+
+    
 </body>
 </html>
