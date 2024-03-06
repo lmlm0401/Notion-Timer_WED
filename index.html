@@ -55,7 +55,7 @@
 
             // 카운트다운 표시
             const countdownDisplay = document.getElementById('countdown');
-            countdownDisplay.textContent = `다음 수요일 13:30까지: ${daysUntilWednesday}일 ${hoursUntilTarget}시간 ${minutesUntilTarget}분 ${secondsUntilTarget}초`;
+            countdownDisplay.textContent = `다음 마감: ${daysUntilWednesday}일 ${hoursUntilTarget}시간 ${minutesUntilTarget}분 ${secondsUntilTarget}초`;
 
             // 1초마다 함수 재호출
             setTimeout(updateCountdown, 1000);
